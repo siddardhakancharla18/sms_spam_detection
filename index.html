@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SMS Spam Detector</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 30px;
+            background-color: #e6f7ff; /* Light blue background */
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            color: #007bff; /* Vibrant blue heading */
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            margin-bottom: 30px;
+            width: 80%;
+            max-width: 600px;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 2px solid #007bff; /* Blue border */
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+        textarea:focus {
+            outline: none;
+            border-color: #0056b3; /* Darker blue focus */
+        }
+        button {
+            background-color: #28a745; /* Green button */
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #1e7e34; /* Darker green hover */
+        }
+        p.prediction {
+            background-color: #f0f8ff; /* Light cyan background */
+            padding: 18px;
+            border-radius: 8px;
+            font-size: 20px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        p.prediction.spam {
+            color: #dc3545; /* Red for Spam */
+            background-color: #ffe6e6; /* Light red for Spam background */
+            border: 1px solid #f5c6cb;
+            font-weight: bold;
+        }
+        p.prediction.not-spam {
+            color: #28a745; /* Green for Not Spam */
+            background-color: #e6ffe6; /* Light green for Not Spam background */
+            border: 1px solid #c3e6cb;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1><span style="color: #ffc107;">SMS</span> <span style="color: #007bff;">Spam</span> <span style="color: #28a745;">Detector</span></h1>
+    <form method="POST">
+        <label for="message"><span style="color: #007bff;">Enter SMS Message:</span></label>
+        <textarea id="message" name="message" rows="7" required placeholder="Type your message here..."></textarea>
+        <button type="submit"><span style="color: white;">Predict Now!</span></button>
+    </form>
+    {% if prediction %}
+        <p class="prediction {% if prediction == 'Spam' %}spam{% else %}not-spam{% endif %}">Prediction: {{ prediction }}</p>
+    {% endif %}
+</body>
+</html>
